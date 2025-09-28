@@ -1,0 +1,23 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 40" width="140" height="40">
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="m0 0h140v40h-140z"/>
+		</clipPath>
+	</defs>
+	<style>
+		tspan { white-space:pre } 
+		.s0 { fill: #4c4c4c } 
+		.s1 { fill: #ffffff } 
+		.t2 { font-size: 23px;fill: #ffffff;font-weight: 400;font-family: "DejaVuSans", "DejaVu Sans" } 
+	</style>
+	<g id="Clip-Path" clip-path="url(#cp1)">
+		<g>
+			<path fill-rule="evenodd" class="s0" d="m20 0c11.05 0 20 8.95 20 20 0 11.05-8.95 20-20 20-11.05 0-20-8.95-20-20 0-11.05 8.95-20 20-20z"/>
+			<path class="s1" d="m25.55 25.04q0.27 0.41 0.64 0.71 0.39 0.29 0.61 0.47 0.22 0.17 0.22 0.37v0.06q0 0.35-0.47 0.35h-4.27q-0.45 0-0.45-0.35v-0.06q0-0.18 0.23-0.41 0.24-0.24 0.32-0.43 0.11-0.2-0.1-0.71l-2.14-3.56-2.25 0.04v3.52q0 0.47 0.43 0.92 0.45 0.43 0.45 0.63v0.06q0 0.35-0.5 0.35h-3.84q-0.45 0-0.45-0.35v-0.06q0-0.2 0.39-0.63 0.39-0.45 0.39-0.92v-10.59q0-0.47-0.39-0.9-0.39-0.45-0.39-0.66v-0.08q0-0.33 0.45-0.33h5.05q2.84 0 4.5 1.17 1.68 1.17 1.7 3.41 0 1.25-0.74 2.31-0.72 1.05-2.07 1.62zm-6.52-4.76h0.88q1.17 0 1.86-0.72 0.72-0.74 0.72-2.15 0-1.67-0.98-2.67-0.96-1.01-2.23-1.01h-0.7q-0.69 0-0.69 0.92v4.26q0 0.73 0.26 1.06 0.29 0.31 0.88 0.31z"/>
+		</g>
+		<text id="iddhisha" style="transform: matrix(1,0,0,1,40.342,28.134)" >
+			<tspan x="0" y="0" class="t2">iddhisha</tspan><tspan  y="0" class="t2">
+</tspan>
+		</text>
+	</g>
+</svg>

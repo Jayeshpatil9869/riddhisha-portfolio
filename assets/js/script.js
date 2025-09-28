@@ -1,6 +1,4 @@
-'use strict';
-
-
+"use strict";
 
 // add Event on multiple elment
 
@@ -8,9 +6,7 @@ const addEventOnElements = function (elements, eventType, callback) {
   for (let i = 0; i < elements.length; i++) {
     elements[i].addEventListener(eventType, callback);
   }
-}
-
-
+};
 
 // PRELOADING
 
@@ -21,22 +17,20 @@ window.addEventListener("load", function () {
   document.body.classList.remove("active");
 });
 
-
-
 // MOBILE NAV TOGGLE
 
 const [navTogglers, navLinks, navbar, overlay] = [
   document.querySelectorAll("[data-nav-toggler]"),
   document.querySelectorAll("[data-nav-link]"),
   document.querySelector("[data-navbar]"),
-  document.querySelector("[data-overlay]")
+  document.querySelector("[data-overlay]"),
 ];
 
 const toggleNav = function () {
   navbar.classList.toggle("active");
   overlay.classList.toggle("active");
   document.body.classList.toggle("active");
-}
+};
 
 addEventOnElements(navTogglers, "click", toggleNav);
 
@@ -44,11 +38,9 @@ const closeNav = function () {
   navbar.classList.remove("active");
   overlay.classList.remove("active");
   document.body.classList.remove("active");
-}
+};
 
 addEventOnElements(navLinks, "click", closeNav);
-
-
 
 // HEADER
 
@@ -60,11 +52,9 @@ const activeElementOnScroll = function () {
   } else {
     header.classList.remove("active");
   }
-}
+};
 
 window.addEventListener("scroll", activeElementOnScroll);
-
-
 
 /**
  * TEXT ANIMATION EFFECT FOR HERO SECTION
@@ -77,7 +67,6 @@ let lastActiveLetterBoxIndex = 0;
 let totalLetterBoxDelay = 0;
 
 const setLetterEffect = function () {
-
   // loop through all letter boxes
   for (let i = 0; i < letterBoxes.length; i++) {
     // set initial animation delay
@@ -90,7 +79,6 @@ const setLetterEffect = function () {
 
     // loop through all letters
     for (let j = 0; j < letters.length; j++) {
-
       // create a span
       const span = document.createElement("span");
 
@@ -118,7 +106,6 @@ const setLetterEffect = function () {
       if (j >= letters.length - 1) break;
       // otherwise update
       letterAnimationDelay += 0.05;
-
     }
 
     // get total delay of active letter box
@@ -132,24 +119,22 @@ const setLetterEffect = function () {
     } else {
       letterBoxes[i].classList.remove("active");
     }
-
   }
 
   setTimeout(function () {
     lastActiveLetterBoxIndex = activeLetterBoxIndex;
 
     // update activeLetterBoxIndex based on total letter boxes
-    activeLetterBoxIndex >= letterBoxes.length - 1 ? activeLetterBoxIndex = 0 : activeLetterBoxIndex++;
+    activeLetterBoxIndex >= letterBoxes.length - 1
+      ? (activeLetterBoxIndex = 0)
+      : activeLetterBoxIndex++;
 
     setLetterEffect();
-  }, (totalLetterBoxDelay * 1000) + 3000);
-
-}
+  }, totalLetterBoxDelay * 1000 + 3000);
+};
 
 // call the letter effect function after window loaded
 window.addEventListener("load", setLetterEffect);
-
-
 
 /**
  * BACK TO TOP BUTTON
@@ -173,8 +158,6 @@ window.addEventListener("scroll", function () {
   }
 });
 
-
-
 /**
  * SCROLL REVEAL
  */
@@ -183,7 +166,8 @@ const revealElements = document.querySelectorAll("[data-reveal]");
 
 const scrollReveal = function () {
   for (let i = 0; i < revealElements.length; i++) {
-    const elementIsInScreen = revealElements[i].getBoundingClientRect().top < window.innerHeight / 1.15;
+    const elementIsInScreen =
+      revealElements[i].getBoundingClientRect().top < window.innerHeight / 1.15;
 
     if (elementIsInScreen) {
       revealElements[i].classList.add("revealed");
@@ -191,48 +175,90 @@ const scrollReveal = function () {
       revealElements[i].classList.remove("revealed");
     }
   }
-}
+};
 
 window.addEventListener("scroll", scrollReveal);
 
 scrollReveal();
 
-
-
 /**
- * CUSTOM CURSOR
+ * SMOOTH CURSOR TRAIL
  */
 
-const cursor = document.querySelector("[data-cursor]");
-const anchorElements = document.querySelectorAll("a");
-const buttons = document.querySelectorAll("button");
+const canvas = document.getElementById("cursor-trail");
+const ctx = canvas.getContext("2d");
 
-// change cursorElement position based on cursor move
-document.body.addEventListener("mousemove", function (event) {
-  setTimeout(function () {
-    cursor.style.top = `${event.clientY}px`;
-    cursor.style.left = `${event.clientX}px`;
-  }, 100);
+// Set canvas size
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+// Handle window resize
+window.addEventListener("resize", () => {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
 });
 
-// add cursor hoverd class
-const hoverActive = function () { cursor.classList.add("hovered"); }
+// Mouse tracking
+let mouse = { x: innerWidth / 2, y: innerHeight / 2 };
+const POINT_COUNT = 15;
+const points = [];
 
-// remove cursor hovered class
-const hoverDeactive = function () { cursor.classList.remove("hovered"); }
+// Initialize points
+for (let i = 0; i < POINT_COUNT; i++) {
+  points.push({ x: mouse.x, y: mouse.y });
+}
 
-// add hover effect on cursor, when hover on any button or hyperlink
-addEventOnElements(anchorElements, "mouseover", hoverActive);
-addEventOnElements(anchorElements, "mouseout", hoverDeactive);
-addEventOnElements(buttons, "mouseover", hoverActive);
-addEventOnElements(buttons, "mouseout", hoverDeactive);
-
-// add disabled class on cursorElement, when mouse out of body
-document.body.addEventListener("mouseout", function () {
-  cursor.classList.add("disabled");
+// Track mouse movement
+window.addEventListener("mousemove", (e) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
 });
 
-// remove diabled class on cursorElement, when mouse in the body
-document.body.addEventListener("mouseover", function () {
-  cursor.classList.remove("disabled");
+// GSAP ticker for smooth real-time updates
+gsap.ticker.add(() => {
+  gsap.to(points[0], {
+    x: mouse.x,
+    y: mouse.y,
+    duration: 0.08,
+    ease: "power4.out",
+  });
+  for (let i = 1; i < POINT_COUNT; i++) {
+    gsap.to(points[i], {
+      x: points[i - 1].x,
+      y: points[i - 1].y,
+      duration: 0.1,
+      ease: "power2.out",
+    });
+  }
+  draw();
+});
+
+// Drawing function
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.lineWidth = 2;
+  ctx.shadowColor = "hsl(346, 100%, 58%)";
+  ctx.shadowBlur = 8;
+
+  // Draw segments with fading opacity
+  for (let i = 0; i < POINT_COUNT - 1; i++) {
+    const pct = i / (POINT_COUNT - 1); // 0 (front) → 1 (back)
+    ctx.strokeStyle = `hsla(346, 100%, 58%, ${1 - pct * 0.3})`;
+    ctx.beginPath();
+    ctx.moveTo(points[i].x, points[i].y);
+    ctx.lineTo(points[i + 1].x, points[i + 1].y);
+    ctx.stroke();
+  }
+}
+
+/**
+ * SHERY.JS MAKE MAGNET EFFECT
+ */
+
+// Initialize Shery.js Make Magnet effect on navigation links and social media icons
+Shery.makeMagnet(".magnet-target", {
+  ease: "cubic-bezier(0.2, 1, 0.320, 1)",
+  duration: 0.3,
+  strength: 0.8,
+  // range: 200,
 });

@@ -226,7 +226,7 @@ body.active { overflow: hidden; }
 }
 
 .img-holder.has-before::before {
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   width: 100%;
   height: 50%;
@@ -723,10 +723,10 @@ body.active { overflow: hidden; }
 .about .shape-1 {
   display: block;
   position: absolute;
-  bottom: 10%;
+  bottom: 2%;
   left: 0;
   z-index: 1;
-  width: 100px;
+  width: 250px;
 }
 
 
@@ -1531,9 +1531,9 @@ body.active { overflow: hidden; }
 
   .about .container { gap: 120px; }
 
-  .about .shape-1 { width: max-content; }
+  /* .about .shape-1 { width: max-content; } */
 
-  .about .section-title { margin-block-end: 70px; }
+  /* .about .section-title { margin-block-end: 70px; } */
 
   .about .wrapper { padding-inline-start: 80px; }
 

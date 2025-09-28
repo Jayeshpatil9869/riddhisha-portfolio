@@ -202,6 +202,7 @@ body.active {
 
 .section {
   padding-block: var(--section-padding);
+  overflow-x: hidden;
 }
 
 .h1,
@@ -1074,7 +1075,7 @@ body.active {
 }
 
 .section-subtitle {
-  font-size: var(--fs-7);
+  font-size: var(--fs-4);
   color: var(--white_a80);
   max-width: 600px;
   margin: 0 auto;
@@ -1275,7 +1276,44 @@ body.active {
 }
 
 .service-card .btn-icon svg {
-  width: 25px;
+  width: 15px;
+}
+
+/* Service image container with positioned button */
+.service-image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.service-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border: 1px solid var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  transition: var(--transition-2);
+  z-index: 2;
+}
+
+.service-btn:hover {
+  background: var(--white);
+  transform: scale(1.1);
+}
+
+.service-btn:hover svg path {
+  stroke: var(--black);
+}
+
+.service-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 /*-----------------------------------*\
@@ -1344,7 +1382,6 @@ body.active {
 
 .footer-top {
   padding-block: 100px 140px;
-  border-block-start: 1px solid var(--white_a9);
   text-align: center;
   z-index: 1;
 }
@@ -1625,6 +1662,38 @@ body.active {
     margin-inline: auto;
   }
 
+  .about .section-title {
+    font-size: var(--fs-4);
+  }
+
+  .about .section-text {
+    font-size: 3rem;
+  }
+
+  .about .shape-1 {
+    width: 180px;
+    height: 160px;
+  }
+
+  /* Hero section tablet adjustments */
+  .hero .wrapper {
+    --fs-2: 4rem;
+    margin-block: 0px 20px;
+  }
+
+  .hero .wrapper .strong {
+    width: 280px;
+  }
+
+  .hero-text {
+    font-size: var(--fs-10);
+    letter-spacing: 4px;
+  }
+
+  .hero-banner {
+    max-width: 150px;
+  }
+
   /**
    * EXPERIENCE
    */
@@ -1663,7 +1732,23 @@ body.active {
 
 @media (max-width: 480px) {
   .section-title {
-    font-size: var(--fs-5);
+    font-size: var(--fs-2);
+  }
+
+  .job-title {
+    font-size: var(--fs-8);
+  }
+
+  .company-name {
+    font-size: var(--fs-10);
+  }
+
+  .job-duration {
+    font-size: var(--fs-11);
+  }
+
+  .job-description {
+    font-size: var(--fs-11);
   }
 
   .experience-content {
@@ -1680,6 +1765,49 @@ body.active {
     left: 20px;
   }
 
+  /* About section mobile adjustments */
+  .about .section-title {
+    font-size: var(--fs-5);
+  }
+
+  .about .section-text {
+    font-size: var(--fs-9);
+  }
+
+  .about .shape-1 {
+    width: 110px;
+    height: 100px;
+    bottom: 5%;
+  }
+
+  /* Hero section mobile adjustments */
+  .hero .wrapper {
+    position: relative;
+    left: -8%;
+    --fs-2: 4.5rem;
+    margin-block: 5px 15px;
+  }
+
+  .hero .wrapper .strong {
+    width: 250px;
+    left: 50%;
+  }
+
+  .hero-text {
+    font-size: var(--fs-11);
+    letter-spacing: 3px;
+  }
+
+  .hero-banner {
+    max-width: 120px;
+  }
+}
+
+/**
+ * responsive for large than 768px screen
+ */
+
+@media (min-width: 768px) {
   /**
    * SERVICE
    */
@@ -1734,7 +1862,7 @@ body.active {
   */
 
   .experience-section {
-    padding: 80px 20px;
+    padding: 10px 20px;
   }
 
   .section-title {
@@ -1961,7 +2089,9 @@ body.active {
     top: 50%;
     left: 68%;
     transform: translate(-50%, -50%);
-    width: 200px;
+    width: 180px;
+    height: 200px;
+    object-fit: cover;
     opacity: 0;
     visibility: hidden;
     transition: var(--transition-1);
@@ -2012,7 +2142,7 @@ body.active {
   .footer .abs-img-2 {
     width: 14%;
     top: 15%;
-    right: 0;
+    right: 5px;
   }
 
   .footer .abs-img-3 {
@@ -2206,7 +2336,9 @@ body.active {
   }
 
   .service-card .img {
-    width: max-content;
+    width: 340px;
+    height: 380px;
+    object-fit: cover;
   }
 
   .service-card .btn-icon {
@@ -2261,7 +2393,7 @@ body.active {
   }
 
   .footer-top .section-title {
-    --fs-2: 8rem;
+    --fs-2: 6rem;
     margin-block-start: 50px;
   }
 
@@ -2347,7 +2479,7 @@ body.active {
   }
 
   .category-card .card-title {
-    --fs-4: 8rem;
+    --fs-4: 5rem;
   }
 
   /**

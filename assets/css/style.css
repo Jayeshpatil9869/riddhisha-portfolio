@@ -168,6 +168,10 @@ body {
   overflow-x: hidden;
 }
 
+main{
+  overflow-x: hidden;
+}
+
 body.active {
   overflow: hidden;
 }
@@ -459,7 +463,7 @@ body.active {
 
 .navbar-list {
   text-align: center;
-  padding-block: 40px;
+  padding-block: 33px;
 }
 
 .navbar-link {
@@ -1053,7 +1057,7 @@ body.active {
 }
 
 .experience-section {
-  padding: var(--section-padding) 15px;
+  padding: 10px 15px;
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
@@ -1783,8 +1787,8 @@ body.active {
   /* Hero section mobile adjustments */
   .hero .wrapper {
     position: relative;
-    left: -8%;
-    --fs-2: 4.5rem;
+    left: -10%;
+    --fs-2: 4.4rem;
     margin-block: 5px 15px;
   }
 
@@ -1794,7 +1798,7 @@ body.active {
   }
 
   .hero-text {
-    font-size: var(--fs-11);
+    font-size: var(--fs-9);
     letter-spacing: 3px;
   }
 
@@ -2456,6 +2460,7 @@ body.active {
 
   .hero-content {
     margin-inline-end: 400px;
+    overflow: hidden;
   }
 
   .hero .wrapper {
